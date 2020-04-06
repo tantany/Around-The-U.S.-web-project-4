@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="./pages/index.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Third project through Yandex Web course, sprint 4">
+  <meta name="keywords" content="html, css">
+  <meta name="author" content="Tanya Margulis">
+  <title>Around the U.S.</title>
+</head>
+<body class="page">
+  <!-- form -->
+  <div class="popup popup_closed">
+    <form class="popup__container">
+      <button class="popup__close-icon"></button>
+      <h2 class="popup__title">Edit profile</h2>
+      <fieldset class="popup__fields">
+        <input type="text" class="popup__item popup__name" name="name" value="Jacques Cousteau" placeholder="Name" required>
+        <input type="text" class="popup__item popup__about" name="about" value="Explorer" placeholder="About me" required>
+      </fieldset>
+      <fieldset class="popup__handler">
+        <input type="submit" class="popup__button" value="Save">
+      </fieldset>
+    </form>
+  </div>
+  <!-- form -->
+  <header class="header">
+    <img src="./images/logo.svg" alt="logo" class="logo">
+    <div class="header__line"></div>
+  </header>
+  <main class="content">
+    <section class="profile">
+      <div class="profile__container">
+        <img src="./images/jacques-cousteau.jpg" alt="jacques-cousteau" class="profile__picture">
+        <div class="profile__info">
+          <div class="profile__wrapper">
+            <h1 class="profile__title">Jacques Cousteau</h1>
+            <button class="profile__edit-button"></button>
+          </div>
+          <p class="profile__subtitle">Explorer</p>
+        </div>
+      </div>
+      <button class="profile__add-button"></button>
+    </section>
+    <section class="elements">
+      <ul class="elements__container">
+        <li class="element">
+          <div class="element__rectangle"></div>
+          <div class="element__container">
+            <img src="./images/yosemite-valley.jpg" alt="yosemite-valley" class="element__image">
+            <div class="element__wrapper">
+              <h2 class="element__title">Yosemite Valley</h2>
+              <img src="./images/heart.svg" alt="heart" class="element__heart">
+            </div>
+          </div>
+        </li>
+        <li class="element">
+          <div class="element__rectangle"></div>
+          <div class="element__container">
+            <img src="./images/lake-louise.jpg" alt="lake-louise" class="element__image">
+            <div class="element__wrapper">
+              <h2 class="element__title">Lake Louise</h2>
+              <img src="./images/heart.svg" alt="heart" class="element__heart">
+            </div>
+          </div>
+        </li>
+        <li class="element">
+          <div class="element__rectangle"></div>
+          <div class="element__container">
+            <img src="./images/bald-mountains.jpg" alt="bald-mountains" class="element__image">
+            <div class="element__wrapper">
+              <h2 class="element__title">Bald Mountains</h2>
+              <img src="./images/heart.svg" alt="heart" class="element__heart">
+            </div>
+          </div>
+        </li>
+        <li class="element">
+          <div class="element__rectangle"></div>
+          <div class="element__container">
+            <img src="./images/latemar.jpg" alt="latemar" class="element__image">
+            <div class="element__wrapper">
+              <h2 class="element__title">Latemar</h2>
+              <img src="./images/heart.svg" alt="heart" class="element__heart">
+            </div>
+          </div>
+        </li>
+        <li class="element">
+          <div class="element__rectangle"></div>
+          <div class="element__container">
+            <img src="./images/vanois-national-park.jpg" alt="vanois-national-park" class="element__image">
+            <div class="element__wrapper">
+              <h2 class="element__title">Vanois National...</h2>
+              <img src="./images/heart.svg" alt="heart" class="element__heart">
+            </div>
+          </div>
+        </li>
+        <li class="element">
+          <div class="element__rectangle"></div>
+          <div class="element__container">
+            <img src="./images/lago-di-braies.jpg" alt="lago-di-braies" class="element__image">
+            <div class="element__wrapper">
+              <h2 class="element__title">Lago di Braies</h2>
+              <img src="./images/heart.svg" alt="heart" class="element__heart">
+            </div>
+          </div>
+        </li>
+      </ul>
+    </section>
+  </main>
+  <footer class="footer">
+    <p class="footer__copyright">© 2020 Around the U.S.</p>
+  </footer>
+  <script src="./script.js"></script>
+</body>
+</html>

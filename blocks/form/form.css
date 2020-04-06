@@ -1,0 +1,25 @@
+@import url(./__close-icon/form__close-icon.css);
+@import url(./_display-none/form_display-none.css);
+
+.form {
+  /* width: fit-content;
+  position: fixed;
+  padding-top: 34px;
+  padding-right: 34px;
+  top: 154px;
+  left: calc(50% - 215px);
+  z-index: 1;
+  opacity: 1; */
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+/*
+@media screen and (max-width: 768px) {
+  .form {
+    left: unset;
+    right: 0;
+  }
+} */

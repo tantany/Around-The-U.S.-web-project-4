@@ -1,0 +1,8 @@
+.elements__container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); /*You can change the 200px if you need*/
+  grid-gap: 18px;
+  margin: 0;
+  padding: 0;
+  /* position: relative; */
+}
