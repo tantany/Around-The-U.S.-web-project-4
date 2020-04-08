@@ -2,9 +2,9 @@ let content = document.querySelector('.content');
 let formElement = document.querySelector('.popup');
 let closeIcon = document.querySelector('.popup__close-icon');
 let editButton = content.querySelector('.profile__edit-button');
+let saveButton = content.querySelector('.popup__button');
 
 editButton.addEventListener('click', popupDisplay);
-closeIcon.addEventListener('click', popupDisplay);
 
 function popupDisplay () {
   formElement.classList.toggle('popup_closed');
