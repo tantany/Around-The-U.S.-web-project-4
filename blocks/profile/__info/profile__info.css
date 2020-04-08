@@ -1,11 +1,23 @@
 .profile__info {
   display: flex;
-  flex-direction: column;
+  width: 428px;
+  flex-wrap: wrap;
+  margin-right: 20px;
+  align-items: center;
+}
+
+@media screen and (max-width: 768px) {
+  .profile__info {
+    width: 310px;
+  }
 }
 
 @media screen and (max-width: 425px) {
   .profile__info {
     align-items: center;
+    margin-right: auto;
+    margin-left: auto;
     margin-top: 10px;
+    width: 230px;
   }
 }
