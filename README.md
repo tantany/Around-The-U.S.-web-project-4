@@ -8,6 +8,7 @@ This project summerizes the topic "Basic JavaScript and Working with the Browser
 1. JS
 2. DOM
 3. Debugging
+4. Media queries
 
 ### Languages:
 - HTML

@@ -4,10 +4,13 @@
   line-height: 22px;
   color: #FFF;
   margin: 0;
+  flex-basis: 100%;
 }
 
 @media screen and (max-width: 425px) {
   .profile__subtitle {
-    padding-left: 75px;
+    margin-left: 70px;
+    font-size: 14px;
+    line-height: 17px;
   }
 }

@@ -1,16 +1,9 @@
 .popup__close-icon {
-  height: 34px;
-  width: 34px;
+  height: 57px;
+  width: 57px;
   position: absolute;
-  top: -34px;
-  right: -34px;
-  border: 0;
-  background-color: unset;
-  background-image: url(../../../images/close-icon.svg);
-  background-repeat: no-repeat;
-  background-position: center;
-  object-fit: cover;
-  background-size: 57px;
+  top: -47px;
+  right: -47px;
 }
 
 .popup__close-icon:hover {
