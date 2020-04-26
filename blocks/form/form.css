@@ -1,0 +1,10 @@
+@import url(./__close-icon/form__close-icon.css);
+@import url(./_display-none/form_display-none.css);
+
+.form {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
