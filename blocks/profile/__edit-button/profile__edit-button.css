@@ -19,8 +19,3 @@
     margin-top: 3px;
   }
 }
-
-.profile__edit-button:hover {
-  opacity: 0.6;
-  cursor: url(../../../images/pointer.png), auto;
-}

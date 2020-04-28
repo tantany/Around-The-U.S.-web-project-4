@@ -1,15 +1,3 @@
-/* .element__container {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.1);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-} */
-
 .element__container {
   position: absolute;
   left: 0;

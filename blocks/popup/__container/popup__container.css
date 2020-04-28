@@ -6,14 +6,15 @@
   padding: 36px;
   position: fixed;
   top: 195px;
-  left: calc(50% - 215px);
+  left: 40px;
+  right: 40px;
+  margin: auto;
   z-index: 2;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 425px) {
   .popup__container {
-    left: unset;
-    right: 34px;
+    padding: 0 20px;
+    top: 155px;
   }
 }
-

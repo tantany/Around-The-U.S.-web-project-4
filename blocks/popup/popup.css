@@ -5,7 +5,11 @@
 @import url(./__fields/popup__fields.css);
 @import url(./__item/popup__item.css);
 @import url(./__title/popup__title.css);
-@import url(./_closed/popup_closed.css);
+@import url(./__image/popup__image.css);
+@import url(./__image-title/popup__image-title.css);
+@import url(./__container/_image/popup__container_image.css);
+@import url(./_type_image/popup_type_image.css);
+@import url(./_opened/popup_opened.css);
 
 .popup {
   position: absolute;
@@ -15,4 +19,7 @@
   z-index: 1;
   top: 0;
   left: 0;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.3s, opacity 0.3s linear;
 }

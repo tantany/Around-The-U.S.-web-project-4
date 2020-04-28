@@ -4,10 +4,16 @@
 @import url(./__container/element__container.css);
 @import url(./__wrapper/element__wrapper.css);
 @import url(./__heart/element__heart.css);
+@import url(./__delete-button/element__delete-button.css);
+@import url(./__heart/_active/element__heart_active.css);
 
 .element {
   width: 100%;
   list-style: none;
   display: flex;
   position: relative;
+}
+
+.element:hover {
+  cursor: url(../../images/pointer.png), auto;
 }

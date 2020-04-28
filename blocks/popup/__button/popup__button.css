@@ -18,3 +18,13 @@
   opacity: 0.8;
   cursor: url(../../../images/pointer.png), auto;
 }
+
+@media screen and (max-width: 425px) {
+  .popup__button {
+    margin-bottom: 30px;
+    margin-top: 10px;
+    font-size: 14px;
+    line-height: 17px;
+    height: 40px;
+  }
+}

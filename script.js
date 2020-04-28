@@ -1,39 +1,139 @@
-let content = document.querySelector('.content');
-let formElement = document.querySelector('.popup');
-let editButton = content.querySelector('.profile__edit-button');
-let closeIcon = document.querySelector('.popup__close-icon');
-let saveButton = content.querySelector('.popup__button');
-// Let's find the form fields in the DOM
-let nameInput = document.querySelector('.popup__name');// Use querySelector()
-let jobInput = document.querySelector('.popup__about');// Use querySelector()
-// Select elements where the field values will be entered
-let profileName = content.querySelector('.profile__title');
-let profileJob = content.querySelector('.profile__subtitle');
-let newName;
-let newJob;
+//declarations
+const initialCards = [
+  {
+      name: "Yosemite Valley",
+      link: "https://code.s3.yandex.net/web-code/yosemite.jpg"
+  },
+  {
+      name: "Lake Louise",
+      link: "https://code.s3.yandex.net/web-code/lake-louise.jpg"
+  },
+  {
+      name: "Bald Mountains",
+      link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg"
+  },
+  {
+      name: "Latemar",
+      link: "https://code.s3.yandex.net/web-code/latemar.jpg"
+  },
+  {
+      name: "Vanois National Park",
+      link: "https://code.s3.yandex.net/web-code/vanois.jpg"
+  },
+  {
+      name: "Lago di Braies",
+      link: "https://code.s3.yandex.net/web-code/lago.jpg"
+  }
+];
+const editFormElement = document.querySelector('.popup_type_edit');
+const addFormElement = document.querySelector('.popup_type_add');
+const openImageFormElement = document.querySelector('.popup_type_image');
+let popupImage = document.querySelector('.popup__image');
+let popupImageTitle = document.querySelector('.popup__image-title');
+//buttons
+const editButton = document.querySelector('.profile__edit-button');
+const editcloseIcon = editFormElement.querySelector('.popup__close-icon');
+const addcloseIcon = addFormElement.querySelector('.popup__close-icon');
+const addButton = document.querySelector('.profile__add-button');
+const imagecloseIcon = openImageFormElement.querySelector('.popup__close-icon');
+// editFormSubmitHandler variables
+const nameInput = document.querySelector('.popup__name');
+const jobInput = document.querySelector('.popup__about');
+const profileName = document.querySelector('.profile__title');
+const profileJob = document.querySelector('.profile__subtitle');
+// addFormSubmitHandler variables
+const titleInput = document.querySelector('.popup__place-title');
+const linkInput = document.querySelector('.popup__image-link');
 
-editButton.addEventListener('click', popupDisplay);
-closeIcon.addEventListener('click', popupDisplay);
+const elementsContainer = document.querySelector('.elements__container');
+const templateCard = document.querySelector('.template-card').content.querySelector('.element');
 
-function popupDisplay () {
-  formElement.classList.toggle('popup_closed');
+//Event Listeners
+addButton.addEventListener('click', () => {
+  popupDisplay(addFormElement);
+});
+addcloseIcon.addEventListener('click', () => {
+  popupDisplay(addFormElement);
+});
+
+editButton.addEventListener('click', () => {
+  popupDisplay(editFormElement);
+});
+editcloseIcon.addEventListener('click', () => {
+  popupDisplay(editFormElement);
+});
+
+imagecloseIcon.addEventListener('click', () => {
+  popupDisplay(openImageFormElement);
+});
+
+editFormElement.addEventListener('submit', editFormSubmitHandler);
+addFormElement.addEventListener('submit', addFormSubmitHandler);
+
+//Functions
+function popupDisplay (element) {
+  element.classList.toggle('popup_opened');
 }
 
-// The form submit handler
-function formSubmitHandler (evt) {
-    evt.preventDefault(); // This line stops the browser from submitting the form in the default way.
-                          // Having done so, we can define our own way of submitting the form.
-                          // We'll explain it in more detail later.
-    evt.stopPropagation();
-    // Get the values of each field from the corresponding value property
-    newName = nameInput.value;
-    newJob = jobInput.value;
+// The edit form submit handler
+function editFormSubmitHandler (evt) {
+    evt.preventDefault();
 
-    // Insert new values using the textContent property of the querySelector() method
-    profileName.textContent = newName;
-    profileJob.textContent = newJob;
+    profileName.textContent = nameInput.value;
+    profileJob.textContent = jobInput.value;
 
-    popupDisplay();
+    popupDisplay(editFormElement);
 }
-// Connect the handler to the form:
-formElement.addEventListener('submit', formSubmitHandler);
+
+// The add-card form submit handler
+function addFormSubmitHandler (evt) {
+  evt.preventDefault();
+
+  const newCard =
+    {
+        name: titleInput.value,
+        link: linkInput.value
+    };
+  renderCard(newCard);
+  popupDisplay(addFormElement);
+}
+
+initialCards.forEach((card) => {
+  renderCard(card);
+});
+
+function renderCard(card) {
+  elementsContainer.prepend(createCard(card));
+}
+
+function createCard(card) {
+  //clone the template to a card entity
+  const cardEntity = templateCard.cloneNode(true);
+  //create consts for each entity in the cloned card
+  const imageEntity = cardEntity.querySelector('.element__image');
+  const titleEntity = cardEntity.querySelector('.element__title');
+  const deleteButtonEntity = cardEntity.querySelector('.element__delete-button');
+  const heartEntity = cardEntity.querySelector('.element__heart');
+  //Assign initialCards
+  imageEntity.style.backgroundImage = `url('${card.link}')`;
+  titleEntity.textContent = card.name;
+
+  deleteButtonEntity.addEventListener('click', () => {
+    const listItem = deleteButtonEntity.closest(".element");
+    listItem.remove();
+  });
+
+  heartEntity.addEventListener('click', (evt) => {
+    evt.target.classList.toggle('element__heart_active');
+  });
+
+  imageEntity.addEventListener('click', () => {
+    popupImage.src = `${card.link}`;
+    popupImage.alt = `${card.name.replace(/\s+/g, '-').toLowerCase()}`;
+    popupImageTitle.textContent = card.name;
+    popupDisplay(openImageFormElement);
+  });
+
+  return cardEntity;
+}
+

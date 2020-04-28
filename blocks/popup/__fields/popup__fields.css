@@ -4,3 +4,9 @@
   margin-top: 45px;
   padding: 0;
 }
+
+@media screen and (max-width: 425px) {
+  .popup__fields {
+    margin-top: 30px;
+  }
+}
