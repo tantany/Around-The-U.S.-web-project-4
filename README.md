@@ -17,4 +17,4 @@ This project summerizes the topic "Basic JavaScript and Working with the Browser
 - JS
 
 #### Project link on Github:
-https://tantany.github.io/web_project_4/
+https://tantany.github.io/Around-The-U.S.-web-project-4/
