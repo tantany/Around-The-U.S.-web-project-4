@@ -15,5 +15,5 @@
 }
 
 .element:hover {
-  cursor: url(../../images/pointer.png), auto;
+  cursor: pointer;
 }
