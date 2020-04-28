@@ -32,10 +32,10 @@ let popupImage = document.querySelector('.popup__image');
 let popupImageTitle = document.querySelector('.popup__image-title');
 //buttons
 const editButton = document.querySelector('.profile__edit-button');
-const editcloseIcon = editFormElement.querySelector('.popup__close-icon');
-const addcloseIcon = addFormElement.querySelector('.popup__close-icon');
+const editCloseIcon = editFormElement.querySelector('.popup__close-icon');
+const addCloseIcon = addFormElement.querySelector('.popup__close-icon');
 const addButton = document.querySelector('.profile__add-button');
-const imagecloseIcon = openImageFormElement.querySelector('.popup__close-icon');
+const imageCloseIcon = openImageFormElement.querySelector('.popup__close-icon');
 // editFormSubmitHandler variables
 const nameInput = document.querySelector('.popup__name');
 const jobInput = document.querySelector('.popup__about');
@@ -52,18 +52,18 @@ const templateCard = document.querySelector('.template-card').content.querySelec
 addButton.addEventListener('click', () => {
   popupDisplay(addFormElement);
 });
-addcloseIcon.addEventListener('click', () => {
+addCloseIcon.addEventListener('click', () => {
   popupDisplay(addFormElement);
 });
 
 editButton.addEventListener('click', () => {
   popupDisplay(editFormElement);
 });
-editcloseIcon.addEventListener('click', () => {
+editCloseIcon.addEventListener('click', () => {
   popupDisplay(editFormElement);
 });
 
-imagecloseIcon.addEventListener('click', () => {
+imageCloseIcon.addEventListener('click', () => {
   popupDisplay(openImageFormElement);
 });
 

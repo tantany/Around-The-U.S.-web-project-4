@@ -6,11 +6,6 @@
   right: -47px;
 }
 
-.popup__close-icon:hover {
-  opacity: 0.6;
-  cursor: url(../../../images/pointer.png), auto;
-}
-
 @media screen and (max-width: 425px) {
   .popup__close-icon {
     height: 42px;
