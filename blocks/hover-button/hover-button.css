@@ -1,8 +1,8 @@
-.hover {
+.hover-button {
   opacity: 1;
 }
 
-.hover:hover {
+.hover-button:hover {
   opacity: 0.6;
   cursor: url(../../images/pointer.png), auto;
 }
