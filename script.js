@@ -98,10 +98,6 @@ function addFormSubmitHandler (evt) {
   popupDisplay(addFormElement);
 }
 
-initialCards.forEach((card) => {
-  renderCard(card);
-});
-
 function renderCard(card) {
   elementsContainer.prepend(createCard(card));
 }
@@ -137,3 +133,6 @@ function createCard(card) {
   return cardEntity;
 }
 
+initialCards.forEach((card) => {
+  renderCard(card);
+});
