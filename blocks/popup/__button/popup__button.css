@@ -14,11 +14,6 @@
   margin-top: 15px;
 }
 
-.popup__button:hover {
-  opacity: 0.8;
-  cursor: url(../../../images/pointer.png), auto;
-}
-
 @media screen and (max-width: 425px) {
   .popup__button {
     margin-bottom: 30px;

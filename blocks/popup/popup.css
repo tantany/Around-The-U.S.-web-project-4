@@ -3,6 +3,7 @@
 @import url(./__close-icon/popup__close-icon.css);
 @import url(./__container/popup__container.css);
 @import url(./__fields/popup__fields.css);
+@import url(./__field/popup__field.css);
 @import url(./__item/popup__item.css);
 @import url(./__title/popup__title.css);
 @import url(./__image/popup__image.css);
@@ -10,6 +11,7 @@
 @import url(./__container/_image/popup__container_image.css);
 @import url(./_type_image/popup_type_image.css);
 @import url(./_opened/popup_opened.css);
+@import url(./__button/_inactive/popup__button_inactive.css);
 
 .popup {
   position: absolute;

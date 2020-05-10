@@ -10,11 +10,6 @@
   font-size: 14px;
   line-height: 17px;
   padding-bottom: 13px;
-  margin-bottom: 30px;
-}
-
-.popup__item:last-of-type {
-  margin: 0;
 }
 
 @media screen and (max-width: 425px) {

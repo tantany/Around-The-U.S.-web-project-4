@@ -1,10 +1,8 @@
-@import url(./__close-icon/form__close-icon.css);
-@import url(./_display-none/form_display-none.css);
+@import url(./__input/form__input.css);
+@import url(./__input-error/form__input-error.css);
+@import url(./__input/_type_error/form__input_type_error.css);
+@import url(./__input-error/_active/form__input-error_active.css);
 
 .form {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 1;
+
 }
