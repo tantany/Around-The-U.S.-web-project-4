@@ -19,8 +19,10 @@
       <div class="profile__container">
         <img src="./images/jacques-cousteau.jpg" alt="jacques-cousteau" class="profile__picture">
         <div class="profile__info">
-          <h1 class="profile__title">Jacques Cousteau</h1>
-          <button class="profile__edit-button hover-button"></button>
+          <div class="profile__wrapper">
+            <h1 class="profile__title">Jacques Cousteau</h1>
+            <button class="profile__edit-button hover-button"></button>
+          </div>
           <p class="profile__subtitle">Explorer</p>
         </div>
       </div>
@@ -42,12 +44,12 @@
       <h2 class="popup__title">Edit profile</h2>
       <fieldset class="popup__fields">
         <label class="popup__field">
-          <input type="text" id="name-input" class="form__input popup__item popup__name" name="name" placeholder="Name" minlength="2" maxlength="40" required>
-          <span id="name-input-error" class="form__input-error">Please fill out this field.</span>
+          <input type="text" id="name-input" class="form__input popup__item popup__name" name="name" placeholder="Name" pattern="[A-Za-z -]{2,40}" required>
+          <span id="name-input-error" class="form__input-error"></span>
         </label>
         <label class="popup__field">
           <input type="text" id="about-input" class="form__input popup__item popup__about" name="about" placeholder="About me" minlength="2" maxlength="200" required>
-          <span id="about-input-error" class="form__input-error">Please fill out this field.</span>
+          <span id="about-input-error" class="form__input-error"></span>
         </label>
         <input type="submit" class="popup__button hover-button" value="Save">
       </fieldset>
@@ -61,11 +63,11 @@
       <fieldset class="popup__fields">
         <label class="popup__field">
           <input type="text" id="title-input" class="form__input popup__item popup__place-title" name="title" placeholder="title" minlength="1" maxlength="30" required>
-          <span id="title-input-error" class="form__input-error">Please fill out this field.</span>
+          <span id="title-input-error" class="form__input-error"></span>
         </label>
         <label class="popup__field">
           <input type="url" id="link-input" class="form__input popup__item popup__image-link" name="image-link" placeholder="image-link" required>
-          <span id="link-input-error" class="form__input-error">Please enter a web address.</span>
+          <span id="link-input-error" class="form__input-error"></span>
         </label>
         <input type="submit" class="popup__button hover-button" value="Create">
       </fieldset>
@@ -92,5 +94,7 @@
     </li>
   </template>
   <script src="./scripts/script.js"></script>
+  <script src="./scripts/validate.js"></script>
+</body>
 </body>
 </html>

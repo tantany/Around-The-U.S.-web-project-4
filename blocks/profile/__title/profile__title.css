@@ -1,5 +1,5 @@
 .profile__title {
-  width: 373px;
+  max-width: 373px;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -15,7 +15,7 @@
   .profile__title {
     font-size: 30px;
     margin-right: 14px;
-    width: 267px;
+    max-width: 267px;
   }
 }
 
@@ -23,6 +23,6 @@
   .profile__title {
     font-size: 22px;
     line-height: 56px;
-    width: 196px;
+    max-width: 196px;
   }
 }

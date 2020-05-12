@@ -10,6 +10,7 @@ This project summerizes the topic "Basic JavaScript and Working with the Browser
 3. Debugging
 4. Media queries
 5. Git
+6. Form validation
 
 ### Languages:
 - HTML

@@ -5,6 +5,7 @@
 @import url(./__subtitle/profile__subtitle.css);
 @import url(./__add-button/profile__add-button.css);
 @import url(./__container/profile__container.css);
+@import url(./__wrapper/profile__wrapper.css);
 
 .profile {
   display: flex;
