@@ -76,12 +76,8 @@ editFormElement.addEventListener('submit', editFormSubmitHandler);
 addFormElement.addEventListener('submit', addFormSubmitHandler);
 
 //Enables closing the form when clicking outside the form area
-// formElement.addEventListener('click', () => {
-//   popupDisplay(formElement);
-// });
-
 editFormElement.addEventListener('click', (evt) => {
-  if(evt.target.classList.conta==="popup"){
+  if(evt.target.classList[0]==="popup"){
     popupDisplay(editFormElement);
   }
 });
@@ -99,13 +95,12 @@ openImageFormElement.addEventListener('click', (evt) => {
 });
 
 //Enables closing the form when pressing Esc key
-
 document.addEventListener("keydown", keyHandler);
 
 //Functions
 
 function keyHandler(evt) {
-  if(evt.key === "Escape"){
+  if(evt.which === 27){
     if(editFormElement.classList.contains('popup_opened')){
       popupDisplay(editFormElement);
     }
@@ -120,6 +115,9 @@ function keyHandler(evt) {
 
 function popupDisplay (element) {
   element.classList.toggle('popup_opened');
+  element.querySelectorAll('.popup__item').forEach((item) =>{
+    item.value = "";
+  });
 }
 
 // The edit form submit handler
