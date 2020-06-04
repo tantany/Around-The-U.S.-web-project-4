@@ -28,26 +28,27 @@ const initialCards = [
 
 const editFormElement = document.querySelector('.popup_type_edit');
 const addFormElement = document.querySelector('.popup_type_add');
+// popup image
 const openImageFormElement = document.querySelector('.popup_type_image');
-let popupImage = document.querySelector('.popup__image');
-let popupImageTitle = document.querySelector('.popup__image-title');
+const popupImage = document.querySelector('.popup__image');
+const popupImageTitle = document.querySelector('.popup__image-title');
+
 //buttons
 const editButton = document.querySelector('.profile__edit-button');
 const editCloseIcon = editFormElement.querySelector('.popup__close-icon');
 const addCloseIcon = addFormElement.querySelector('.popup__close-icon');
 const addButton = document.querySelector('.profile__add-button');
 const imageCloseIcon = openImageFormElement.querySelector('.popup__close-icon');
+
 // editFormSubmitHandler variables
 const nameInput = document.querySelector('.popup__name');
 const jobInput = document.querySelector('.popup__about');
 const profileName = document.querySelector('.profile__title');
 const profileJob = document.querySelector('.profile__subtitle');
+
 // addFormSubmitHandler variables
 const titleInput = document.querySelector('.popup__place-title');
 const linkInput = document.querySelector('.popup__image-link');
-//template card
-const elementsContainer = document.querySelector('.elements__container');
-const templateCard = document.querySelector('.template-card').content.querySelector('.element');
 
 //Event Listeners
 addButton.addEventListener('click', () => {
@@ -130,6 +131,7 @@ function editFormSubmitHandler (evt) {
     popupDisplay(editFormElement);
 }
 
+
 // The add-card form submit handler
 function addFormSubmitHandler (evt) {
   evt.preventDefault();
@@ -144,40 +146,40 @@ function addFormSubmitHandler (evt) {
 }
 
 function renderCard(card) {
-  elementsContainer.prepend(createCard(card));
-}
-
-function createCard(card) {
-  //clone the template to a card entity
-  const cardEntity = templateCard.cloneNode(true);
-  //create consts for each entity in the cloned card
-  const imageEntity = cardEntity.querySelector('.element__image');
-  const titleEntity = cardEntity.querySelector('.element__title');
-  const deleteButtonEntity = cardEntity.querySelector('.element__delete-button');
-  const heartEntity = cardEntity.querySelector('.element__heart');
-  //Assign initialCards
-  imageEntity.style.backgroundImage = `url('${card.link}')`;
-  titleEntity.textContent = card.name;
-
-  deleteButtonEntity.addEventListener('click', () => {
-    const listItem = deleteButtonEntity.closest(".element");
-    listItem.remove();
-  });
-
-  heartEntity.addEventListener('click', (evt) => {
-    evt.target.classList.toggle('element__heart_active');
-  });
-
-  imageEntity.addEventListener('click', () => {
-    popupImage.src = `${card.link}`;
-    popupImage.alt = `${card.name.replace(/\s+/g, '-').toLowerCase()}`;
-    popupImageTitle.textContent = card.name;
+  // elementsContainer.prepend(createCard(card));
+  const newCard = new Card(card,".template-card");
+  const newCardElement = newCard.generateCard();
+  document.querySelector(".elements__container").prepend(newCardElement);
+  //create popup event listeners
+  newCardElement.querySelector(".element__image").addEventListener("click", () => {
+    popupImage.src = newCardElement.querySelector(".element__image").style.backgroundImage.slice(5, -2);
+    popupImage.alt = `${newCardElement.querySelector(".element__title").textContent.replace(/\s+/g, '-').toLowerCase()}`;
+    popupImageTitle.textContent = newCardElement.querySelector(".element__title").textContent;
     popupDisplay(openImageFormElement);
   });
-
-  return cardEntity;
 }
 
 initialCards.forEach((card) => {
   renderCard(card);
 });
+
+
+//Generate form validation
+const formSettings = {
+  formSelector: ".form", //popup__form
+  inputSelector: ".form__input",  //popup__input
+  submitButtonSelector: ".popup__button",
+  inactiveButtonClass: "popup__button_inactive", //popup__button_disabled
+  inputErrorClass: "form__input_type_error", //popup__input_type_error
+  errorClass: "form__input-error_active" //popup__error_visible
+};
+
+const formList = Array.from(document.querySelectorAll(formSettings.formSelector));
+formList.forEach((formElement) => {
+  const form = new FormValidator(formSettings, formElement);
+  form.enableValidation();
+});
+
+
+import { FormValidator } from "./FormValidator.js";
+import { Card } from "./Card.js";
