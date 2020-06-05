@@ -21,12 +21,12 @@
         <div class="profile__info">
           <div class="profile__wrapper">
             <h1 class="profile__title">Jacques Cousteau</h1>
-            <button class="profile__edit-button hover-button"></button>
+            <button class="profile__edit-button hover-button" aria-label="Edit"></button>
           </div>
           <p class="profile__subtitle">Explorer</p>
         </div>
       </div>
-      <button class="profile__add-button hover-button"></button>
+      <button class="profile__add-button hover-button" aria-label="Add"></button>
     </section>
     <section class="elements">
       <ul class="elements__container">
@@ -36,12 +36,11 @@
   </main>
   <footer class="footer">
     <p class="footer__copyright">© 2020 Around the U.S.</p>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/bn4PDdFL76I?start=185&end=189" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   </footer>
   <!-- Edit name & occupation -->
   <div class="popup popup_type_edit">
     <form class="form popup__container" name="change-profile-info" novalidate>
-      <img src="./images/close-icon.svg" alt="close" class="popup__close-icon hover-button">
+      <button class="popup__close-icon hover-button" aria-label="Close"></button>
       <h2 class="popup__title">Edit profile</h2>
       <fieldset class="popup__fields">
         <label class="popup__field">
@@ -59,7 +58,7 @@
   <!-- Adding new place -->
   <div class="popup popup_type_add">
     <form class="form popup__container" name="add-place" novalidate>
-      <img src="./images/close-icon.svg" alt="close" class="popup__close-icon hover-button">
+      <button class="popup__close-icon hover-button" aria-label="Close"></button>
       <h2 class="popup__title">New Place</h2>
       <fieldset class="popup__fields">
         <label class="popup__field">
@@ -77,7 +76,7 @@
   <!-- Open image -->
   <div class="popup popup_type_image">
     <div class="popup__container popup__container_image">
-      <img src="./images/close-icon.svg" alt="close" class="popup__close-icon hover-button">
+      <button class="popup__close-icon hover-button" aria-label="Close"></button>
       <img src="" alt="" class="popup__image">
       <p class="popup__image-title"></p>
     </div>
@@ -88,9 +87,9 @@
       <div class="element__rectangle"></div>
       <div class="element__container">
         <div class="element__image"></div>
-        <button class="element__delete-button hover-button"></button>
+        <button class="element__delete-button hover-button" aria-label="Delete"></button>
         <h2 class="element__title"></h2>
-        <button class="element__heart hover-button"></button>
+        <button class="element__heart hover-button" aria-label="Like"></button>
       </div>
     </li>
   </template>

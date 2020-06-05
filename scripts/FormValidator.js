@@ -15,11 +15,11 @@ class FormValidator {
       errorElement.textContent = input.validationMessage;
       errorElement.classList.add(this._settings.errorClass);
     }
-  };
+  }
 
   _toggleButtonState (inputList) {
     const buttonElement = this._formElement.querySelector(this._settings.submitButtonSelector);
-    const hasInvalidInput = inputList.some((inputElement) => {
+    const hasInvalidInput = inputList.some( function (inputElement) {
       return !inputElement.validity.valid;
     });
     if (hasInvalidInput) {
@@ -29,7 +29,7 @@ class FormValidator {
       buttonElement.classList.remove(this._settings.inactiveButtonClass);
       buttonElement.classList.add("hover-button");
     }
-  };
+  }
 
   _setEventListeners (inputList) {
     this._formElement.addEventListener("submit", (evt) => {
@@ -42,7 +42,7 @@ class FormValidator {
         this._toggleButtonState(inputList);
       });
     });
-  };
+  }
 
   //enables form validation
   enableValidation() {

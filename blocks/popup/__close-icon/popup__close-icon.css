@@ -4,6 +4,9 @@
   position: absolute;
   top: -47px;
   right: -47px;
+  background-color: unset;
+  border: 0;
+  background-image: url("../../../images/close-icon.svg");
 }
 
 @media screen and (max-width: 425px) {

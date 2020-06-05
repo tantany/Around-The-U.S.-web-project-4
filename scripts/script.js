@@ -1,3 +1,6 @@
+import { FormValidator } from "./FormValidator.js";
+import { Card } from "./Card.js";
+
 //declarations
 const initialCards = [
   {
@@ -50,11 +53,71 @@ const profileJob = document.querySelector('.profile__subtitle');
 const titleInput = document.querySelector('.popup__place-title');
 const linkInput = document.querySelector('.popup__image-link');
 
+//Functions
+
+function keyHandler(evt) {
+  if(evt.which === 27){
+    [editFormElement, addFormElement, openImageFormElement]
+    .forEach((formElement) => {
+        if (formElement.classList.contains('popup_opened')) {
+            popupDisplay(formElement);
+        }
+    });
+  }
+}
+
+function popupDisplay (element) {
+  element.classList.toggle('popup_opened');
+  element.querySelectorAll('.popup__item').forEach((item) =>{
+    item.value = "";
+  });
+}
+
+// The edit form submit handler
+function editFormSubmitHandler (evt) {
+  evt.preventDefault();
+  evt.stopPropagation();
+  profileName.textContent = nameInput.value;
+  profileJob.textContent = jobInput.value;
+
+  popupDisplay(editFormElement);
+}
+
+
+// The add-card form submit handler
+function addFormSubmitHandler (evt) {
+evt.preventDefault();
+evt.stopPropagation();
+const newCard =
+  {
+      name: titleInput.value,
+      link: linkInput.value
+  };
+renderCard(newCard);
+popupDisplay(addFormElement);
+}
+
+function renderCard(card) {
+  // elementsContainer.prepend(createCard(card));
+  const newCard = new Card(card,".template-card");
+  const newCardElement = newCard.generateCard();
+  document.querySelector(".elements__container").prepend(newCardElement);
+}
+
+function imagePopup(element) {
+  //create popup event listeners
+    popupImage.src = element.querySelector(".element__image").style.backgroundImage.slice(5, -2);
+    popupImage.alt = `${element.querySelector(".element__title").textContent.replace(/\s+/g, '-').toLowerCase()}`;
+    popupImageTitle.textContent = element.querySelector(".element__title").textContent;
+    popupDisplay(openImageFormElement);
+}
+
 //Event Listeners
 addButton.addEventListener('click', () => {
   popupDisplay(addFormElement);
 });
 addCloseIcon.addEventListener('click', (evt) => {
+  evt.preventDefault();
   popupDisplay(addFormElement);
   evt.stopPropagation();
 });
@@ -63,11 +126,13 @@ editButton.addEventListener('click', () => {
   popupDisplay(editFormElement);
 });
 editCloseIcon.addEventListener('click', (evt) => {
+  evt.preventDefault();
   popupDisplay(editFormElement);
   evt.stopPropagation();
 });
 
 imageCloseIcon.addEventListener('click', (evt) => {
+  evt.preventDefault();
   popupDisplay(openImageFormElement);
   evt.stopPropagation();
 });
@@ -98,67 +163,6 @@ openImageFormElement.addEventListener('click', (evt) => {
 //Enables closing the form when pressing Esc key
 document.addEventListener("keydown", keyHandler);
 
-//Functions
-
-function keyHandler(evt) {
-  if(evt.which === 27){
-    if(editFormElement.classList.contains('popup_opened')){
-      popupDisplay(editFormElement);
-    }
-    if(addFormElement.classList.contains('popup_opened')){
-      popupDisplay(addFormElement);
-    }
-    if(openImageFormElement.classList.contains('popup_opened')){
-      popupDisplay(openImageFormElement);
-    }
-  }
-}
-
-function popupDisplay (element) {
-  element.classList.toggle('popup_opened');
-  element.querySelectorAll('.popup__item').forEach((item) =>{
-    item.value = "";
-  });
-}
-
-// The edit form submit handler
-function editFormSubmitHandler (evt) {
-    evt.preventDefault();
-
-    profileName.textContent = nameInput.value;
-    profileJob.textContent = jobInput.value;
-
-    popupDisplay(editFormElement);
-}
-
-
-// The add-card form submit handler
-function addFormSubmitHandler (evt) {
-  evt.preventDefault();
-
-  const newCard =
-    {
-        name: titleInput.value,
-        link: linkInput.value
-    };
-  renderCard(newCard);
-  popupDisplay(addFormElement);
-}
-
-function renderCard(card) {
-  // elementsContainer.prepend(createCard(card));
-  const newCard = new Card(card,".template-card");
-  const newCardElement = newCard.generateCard();
-  document.querySelector(".elements__container").prepend(newCardElement);
-  //create popup event listeners
-  newCardElement.querySelector(".element__image").addEventListener("click", () => {
-    popupImage.src = newCardElement.querySelector(".element__image").style.backgroundImage.slice(5, -2);
-    popupImage.alt = `${newCardElement.querySelector(".element__title").textContent.replace(/\s+/g, '-').toLowerCase()}`;
-    popupImageTitle.textContent = newCardElement.querySelector(".element__title").textContent;
-    popupDisplay(openImageFormElement);
-  });
-}
-
 initialCards.forEach((card) => {
   renderCard(card);
 });
@@ -180,6 +184,4 @@ formList.forEach((formElement) => {
   form.enableValidation();
 });
 
-
-import { FormValidator } from "./FormValidator.js";
-import { Card } from "./Card.js";
+export { imagePopup };

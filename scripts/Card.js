@@ -1,3 +1,5 @@
+import { imagePopup } from "./script.js";
+
 class Card {
   constructor(data, cardSelector) {
     this._name = data.name;
@@ -19,6 +21,11 @@ class Card {
     //heart button
     this._element.querySelector(".element__heart").addEventListener('click', (evt) => {
       evt.target.classList.toggle('element__heart_active');
+    });
+
+    //image popup
+    this._element.querySelector(".element__image").addEventListener("click", () => {
+      imagePopup(this._element);
     });
   }
 
