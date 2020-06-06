@@ -55,6 +55,13 @@ const linkInput = document.querySelector('.popup__image-link');
 
 //Functions
 
+function popupDisplay (element) {
+  element.classList.toggle('popup_opened');
+  element.querySelectorAll('.popup__item').forEach((item) =>{
+    item.value = "";
+  });
+}
+
 function keyHandler(evt) {
   if(evt.which === 27){
     [editFormElement, addFormElement, openImageFormElement]
@@ -64,13 +71,6 @@ function keyHandler(evt) {
         }
     });
   }
-}
-
-function popupDisplay (element) {
-  element.classList.toggle('popup_opened');
-  element.querySelectorAll('.popup__item').forEach((item) =>{
-    item.value = "";
-  });
 }
 
 // The edit form submit handler
@@ -83,6 +83,11 @@ function editFormSubmitHandler (evt) {
   popupDisplay(editFormElement);
 }
 
+function renderCard(card) {
+  const newCard = new Card(card,".template-card");
+  const newCardElement = newCard.generateCard();
+  document.querySelector(".elements__container").prepend(newCardElement);
+}
 
 // The add-card form submit handler
 function addFormSubmitHandler (evt) {
@@ -97,19 +102,12 @@ renderCard(newCard);
 popupDisplay(addFormElement);
 }
 
-function renderCard(card) {
-  // elementsContainer.prepend(createCard(card));
-  const newCard = new Card(card,".template-card");
-  const newCardElement = newCard.generateCard();
-  document.querySelector(".elements__container").prepend(newCardElement);
-}
-
+//create popup event listeners
 function imagePopup(element) {
-  //create popup event listeners
-    popupImage.src = element.querySelector(".element__image").style.backgroundImage.slice(5, -2);
-    popupImage.alt = `${element.querySelector(".element__title").textContent.replace(/\s+/g, '-').toLowerCase()}`;
-    popupImageTitle.textContent = element.querySelector(".element__title").textContent;
-    popupDisplay(openImageFormElement);
+  popupImage.src = element.querySelector(".element__image").style.backgroundImage.slice(5, -2);
+  popupImage.alt = `${element.querySelector(".element__title").textContent.replace(/\s+/g, '-').toLowerCase()}`;
+  popupImageTitle.textContent = element.querySelector(".element__title").textContent;
+  popupDisplay(openImageFormElement);
 }
 
 //Event Listeners
@@ -142,22 +140,13 @@ editFormElement.addEventListener('submit', editFormSubmitHandler);
 addFormElement.addEventListener('submit', addFormSubmitHandler);
 
 //Enables closing the form when clicking outside the form area
-editFormElement.addEventListener('click', (evt) => {
-  if(evt.target.classList[0]==="popup"){
-    popupDisplay(editFormElement);
-  }
-});
-
-addFormElement.addEventListener('click', (evt) => {
-  if(evt.target.classList[0]==="popup"){
-    popupDisplay(addFormElement);
-  }
-});
-
-openImageFormElement.addEventListener('click', (evt) => {
-  if(evt.target.classList[0]==="popup"){
-    popupDisplay(openImageFormElement);
-  }
+[editFormElement, addFormElement, openImageFormElement]
+.forEach((formElement) => {
+  formElement.addEventListener('click', (evt) => {
+    if(evt.target.classList.contains("popup")){
+      popupDisplay(formElement);
+    }
+  });
 });
 
 //Enables closing the form when pressing Esc key

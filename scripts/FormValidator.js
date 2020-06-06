@@ -19,9 +19,7 @@ class FormValidator {
 
   _toggleButtonState (inputList) {
     const buttonElement = this._formElement.querySelector(this._settings.submitButtonSelector);
-    const hasInvalidInput = inputList.some( function (inputElement) {
-      return !inputElement.validity.valid;
-    });
+    const hasInvalidInput = inputList.some(inputElement => !inputElement.validity.valid);
     if (hasInvalidInput) {
       buttonElement.classList.add(this._settings.inactiveButtonClass);
       buttonElement.classList.remove("hover-button");
