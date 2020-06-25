@@ -2,7 +2,10 @@
 ## Practicum by Yandex Web Course
 
 ### Overview
-This project summerizes the topic "Basic JavaScript and Working with the Browser" and "Basic JavaScript and Working with the Browser".
+This project summerizes the topics:
+- "Basic JavaScript and Working with the Browser"
+- "Object-Oriented Programming"
+- "Project Building with Webpack"
 
 ### Here are the course subjects that were incorporated into the project:
 1. JS
@@ -11,6 +14,8 @@ This project summerizes the topic "Basic JavaScript and Working with the Browser
 4. Media queries
 5. Git
 6. Form validation
+7. OOP
+8. Webpack
 
 ### Languages:
 - HTML
