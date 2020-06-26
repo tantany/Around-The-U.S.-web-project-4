@@ -4,6 +4,7 @@ class PopupWithForm extends Popup {
 	constructor({ popupSelector, handleFormSubmit }) {
     super(popupSelector);
     this._handleFormSubmit = handleFormSubmit;
+    this._formElement = this._popupElement.querySelector('.form');
   }
 
   // Collects data from all the input fields
@@ -28,7 +29,7 @@ class PopupWithForm extends Popup {
   // Modifies the close() parent method in order to reset the form once the popup is closed.
   close() {
     super.close();
-    this._popupElement.querySelector('.form').reset();
+    this._formElement.reset();
   }
 }
 

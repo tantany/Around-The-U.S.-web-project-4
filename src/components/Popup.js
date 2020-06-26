@@ -1,3 +1,5 @@
+import {EscKeyEvt} from "../utils/constants.js"
+
 class Popup {
   constructor(popupSelector) {
     this._popupElement = document.querySelector(popupSelector);
@@ -6,7 +8,7 @@ class Popup {
 
   // Stores the logic for closing the popup by pressing the Esc key.
   _handleEscClose(keyEvt) {
-    if(keyEvt.which === 27){
+    if(keyEvt.which === EscKeyEvt){
       this.close();
     }
   }
@@ -38,11 +40,6 @@ class Popup {
   //Closes the popup
   close() {
     this._popupElement.classList.remove('popup_opened');
-    document.removeEventListener('keydown', this._handleEscClose);
-    // this._popup.querySelectorAll('.popup__item').forEach((item) =>{ //do reset instead?
-    //   item.value = "";
-    // });
-    //this._popupElement.querySelector('.form').reset();
   }
 }
 

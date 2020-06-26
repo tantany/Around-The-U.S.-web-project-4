@@ -1,6 +1,5 @@
 class Card {
   constructor({cardItem, handleCardClick}, cardSelector) {
-    console.log(cardItem);
     this._name = cardItem.name;
     this._link = cardItem.link;
     this._card = document.querySelector(cardSelector);

@@ -1,5 +1,5 @@
 import "./index.css"; // add import of the main stylesheets file
-import "../vendor/fonts/fonts.css";
+// import "../vendor/fonts/fonts.css";
 
 import FormValidator from "../components/FormValidator.js";
 import Card from "../components/Card.js";
