@@ -1,10 +1,12 @@
 import Popup from './Popup.js';
+import {EnterKeyEvt} from "../utils/constants.js"
 
 class PopupWithForm extends Popup {
 	constructor({ popupSelector, handleFormSubmit }) {
     super(popupSelector);
     this._handleFormSubmit = handleFormSubmit;
     this._formElement = this._popupElement.querySelector('.form');
+    this._buttonValue = this._popupElement.querySelector('.popup__button').value;
   }
 
   // Collects data from all the input fields
@@ -20,16 +22,33 @@ class PopupWithForm extends Popup {
     super.setEventListeners();
     this._popupElement.addEventListener("submit", (evt) => {
       evt.preventDefault();
+      this.renderLoading(true);
       this._handleFormSubmit(this._getInputValues());
-      this.close();
       evt.stopPropagation();
     });
+
+    this._popupElement.addEventListener('keydown', (evt) => {
+      if(evt.which === EnterKeyEvt){
+        this.renderLoading(true);
+        this._handleFormSubmit(this._getInputValues());
+      }
+    });
+
   }
 
   // Modifies the close() parent method in order to reset the form once the popup is closed.
   close() {
     super.close();
     this._formElement.reset();
+  }
+
+  renderLoading(isLoading) {
+    if(isLoading) {
+      this._popupElement.querySelector('.popup__button').value = "Saving..."
+    }
+    else {
+      this._popupElement.querySelector('.popup__button').value = this._buttonValue;
+    }
   }
 }
 

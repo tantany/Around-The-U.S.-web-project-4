@@ -10,10 +10,7 @@ class UserInfo {
 
   // Returns an object with information about the user.
   getUserInfo() {
-    return {userName: this._userName, userJob: this._userJob}; //Every time I hit submit, this._userName & this._userJob are updated
-                                                               //because in index.js I preform: new UserInfo(data); on handleFormSubmit
-                                                               //so I think they are always up to date.
-                                                               //I also checked by printing to console and it seems they are updated.
+    return {userName: this._userName, userJob: this._userJob};
   }
 
   // Takes new user data and adds it on the page

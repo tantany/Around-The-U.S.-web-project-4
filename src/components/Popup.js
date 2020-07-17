@@ -3,7 +3,6 @@ import {EscKeyEvt} from "../utils/constants.js"
 class Popup {
   constructor(popupSelector) {
     this._popupElement = document.querySelector(popupSelector);
-    // this._handleEscClose = this._handleEscClose.bind(this);
   }
 
   // Stores the logic for closing the popup by pressing the Esc key.

@@ -16,13 +16,16 @@
   <main class="content">
     <section class="profile">
       <div class="profile__container">
-        <img src="./images/jacques-cousteau.jpg" alt="jacques-cousteau" class="profile__picture">
+        <div class="profile__overlay-container">
+          <div class="profile__overlay"></div>
+          <img src="#" alt="profile-picture" class="profile__picture">
+        </div>
         <div class="profile__info">
           <div class="profile__wrapper">
-            <h1 class="profile__title">Jacques Cousteau</h1>
+            <h1 class="profile__title"></h1>
             <button class="profile__edit-button hover-button" aria-label="Edit"></button>
           </div>
-          <p class="profile__subtitle">Explorer</p>
+          <p class="profile__subtitle"></p>
         </div>
       </div>
       <button class="profile__add-button hover-button" aria-label="Add"></button>
@@ -80,6 +83,30 @@
       <p class="popup__image-title"></p>
     </div>
   </div>
+  <!-- Delete card? -->
+  <div class="popup popup_type_form popup_type_delete">
+    <form class="form popup__container" name="delete" novalidate>
+      <button class="popup__close-icon hover-button" aria-label="Close"></button>
+      <h2 class="popup__title">Are you sure?</h2>
+      <fieldset class="popup__fields popup__fields_type_delete">
+        <input type="submit" class="popup__button hover-button" value="Yes">
+      </fieldset>
+    </form>
+  </div>
+  <!-- Changing profile picture -->
+  <div class="popup popup_type_form popup_type_picture">
+    <form class="form popup__container" name="change-picture" novalidate>
+      <button class="popup__close-icon hover-button" aria-label="Close"></button>
+      <h2 class="popup__title">Change profile picture</h2>
+      <fieldset class="popup__fields">
+        <label class="popup__field">
+          <input type="url" id="link-input" class="form__input popup__item popup__image-link" name="link" placeholder="Link" required>
+          <span id="link-input-error" class="form__input-error"></span>
+        </label>
+        <input type="submit" class="popup__button hover-button" value="Create">
+      </fieldset>
+    </form>
+  </div>
   <!-- template -->
   <template class="template-card">
     <li class="element">
@@ -88,7 +115,10 @@
         <div class="element__image"></div>
         <button class="element__delete-button hover-button" aria-label="Delete"></button>
         <h2 class="element__title"></h2>
-        <button class="element__heart hover-button" aria-label="Like"></button>
+        <div class="element__wrapper">
+          <button class="element__heart hover-button" aria-label="Like"></button>
+          <p class="element__counter"></p>
+        </div>
       </div>
     </li>
   </template>

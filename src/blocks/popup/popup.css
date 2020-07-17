@@ -12,6 +12,7 @@
 @import url('./_type/popup_type_image.css');
 @import url('./_opened/popup_opened.css');
 @import url('./__button/_inactive/popup__button_inactive.css');
+@import url('./__fields/_type/popup__fields_type_delete.css');
 
 .popup {
   position: absolute;
