@@ -16,6 +16,7 @@ This project summerizes the topics:
 6. Form validation
 7. OOP
 8. Webpack
+9. API
 
 ### Languages:
 - HTML
