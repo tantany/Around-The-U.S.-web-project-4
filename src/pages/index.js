@@ -18,12 +18,10 @@ import {
   deletePopupSelector,
   picturePopupSelector,
   templateCardSelector,
-  profilePicture,
   profilePictureContainer
 } from "../utils/constants.js";
 
-let listItemDelete;
-let cardIdDelete;
+let userInfo;
 
 const api = new Api({
   baseUrl: "https://around.nomoreparties.co/v1/group-1",
@@ -41,11 +39,11 @@ popupWithImage.setEventListeners();
 // Create delete form
 const deleteFormElement = new PopupWithForm({
   popupSelector: deletePopupSelector,
-  handleFormSubmit: () => {
-    listItemDelete.remove();
+  handleFormSubmit: ({} , listItem, cardId) => {
+    listItem.remove();
     //delete card data from the server
-    api.deleteCard(cardIdDelete)
-    .then((result) => deleteFormElement.close())
+    api.deleteCard(cardId)
+    .then(() => deleteFormElement.close())
     .finally(() => deleteFormElement.renderLoading(false));
   }
 });
@@ -54,61 +52,53 @@ deleteFormElement.setEventListeners();
 
 //render a card
 function renderCard(cardItem) {
-  const card = new Card({cardItem, handleCardClick: ({name, link}) => {
+  const card = new Card({cardItem,
+    handleCardClick: ({name, link}) => {
       popupWithImage.open(name, link);
     },
-    handleDeleteClick: (listItem) => {
-      listItemDelete = listItem;
-      cardIdDelete = card._cardItem._id;
+    handleDeleteClick: (listItem, cardId) => {
+      deleteFormElement.setSubmitAction(listItem, cardId);
       deleteFormElement.open();
     },
-    handleLikeClick: (LikeButtonIsActive) => {
-      if(LikeButtonIsActive){
-        api.cardUnliked(card._cardItem._id)
-        .then((result) => {
-          card._element.querySelector('.element__counter').textContent = result.likes.length;
-        });
-      } else {
-        api.cardLiked(card._cardItem._id)
-        .then((result) => {
-          card._element.querySelector('.element__counter').textContent = result.likes.length;
-        });
-      }
+    handleLikeClick: (LikeButtonIsActive, cardId, likeCounter) => {
+      api.changeLikeStatus(LikeButtonIsActive, cardId)
+      .then((result) => {
+        likeCounter.textContent = result.likes.length;
+      });
     }
-  }, templateCardSelector);
+  }, templateCardSelector, userInfo.getUserInfo().userId);
 
-  //get info from server to show icons on the card
-  api.setCardIcons()
-  .then((result) => {
-    card.showCardIcons(result);
-  });
-
-  const cardElement = card.generateCard();
-  return cardElement;
+  return card.generateCard();
 }
 
-//Get initial cards from server
-api.getInitialCards().then((result) => {
-  const cardList = new Section({
-      items: result,
-      renderer: (cardItem) => {
-        cardList.addItem(renderCard(cardItem));
-      }
-    },
-    cardContainer
-  );
-  cardList.renderItems();
+// Load user information from the server and then get initial cards from server
+api.getUserInfo()
+.then((result) => {
+  userInfo = new UserInfo({userName: result.name, userJob: result.about, userAvatar: result.avatar, userId: result._id});
+  userInfo.setUserInfo();
+})
+.then(() => {
+  api.getInitialCards().then((result) => {
+    const cardList = new Section({
+        items: result,
+        renderer: (cardItem) => {
+          cardList.addItem(renderCard(cardItem));
+        }
+      },
+      cardContainer
+    );
+    cardList.renderItems();
+  });
 });
 
-
 // Creates add new card form
-const addFormElement = new PopupWithForm({
+const addFormElement = new PopupWithForm({ //I checked and the form validation works. For example it doesn't allow you to put anything but link.
   popupSelector: addPopupSelector,
   handleFormSubmit: (data) => {
     //send card data to the server
     api.sendCardData(data)
     .then((result) => {
-      document.querySelector(cardContainer).append(renderCard(result));
+      document.querySelector(cardContainer).append(renderCard(result)); //I don't see how I can avoid calling the same DOM element... I need it for initial cards and also for new cards the user adds.
       addFormElement.close();
     })
     .finally(() => addFormElement.renderLoading(false));
@@ -128,7 +118,8 @@ const pictureFormElement = new PopupWithForm({
     //send the server the new profile picture link
     api.sendUserAvatar(avatar)
     .then((result) => {
-      profilePicture.src = result.avatar;
+      userInfo.updateUserAvatar(result.avatar);
+      userInfo.setUserInfo();
       pictureFormElement.close();
     })
     .finally(() => pictureFormElement.renderLoading(false));
@@ -145,11 +136,11 @@ profilePictureContainer.addEventListener('click', () => {
 const editFormElement = new PopupWithForm({
   popupSelector: editPopupSelector,
   handleFormSubmit: (data) => {
-    const info = new UserInfo(data);
-    info.setUserInfo();
+    userInfo.updateUserInfo(data);
+    userInfo.setUserInfo();
     //update user info into the server
     api.sendUserInfo(data)
-    .then((result) => editFormElement.close())
+    .then(() => editFormElement.close())
     .finally(() => editFormElement.renderLoading(false));
   }
 });
@@ -157,14 +148,6 @@ editFormElement.setEventListeners();
 
 editButton.addEventListener('click', () => {
   editFormElement.open();
-});
-
-// Loading user information from the server
-api.getUserInfo()
-.then((result) => {
-  const userInfo = new UserInfo({userName: result.name, userJob: result.about, userAvatar: result.avatar});
-  userInfo.setUserInfo();
-  profilePicture.src = result.avatar;
 });
 
 // Gives validation capabilities to all forms

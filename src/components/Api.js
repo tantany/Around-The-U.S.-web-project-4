@@ -1,5 +1,3 @@
-import {resultInitialCards} from "../pages/index.js"
-
 class Api {
   constructor({baseUrl, headers}) {
     this._baseUrl = baseUrl;
@@ -117,54 +115,39 @@ class Api {
     });
   }
 
-  //remove like from server
-  cardUnliked(cardId) {
-    return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
-      method: "DELETE",
-      headers: this._headers
-    })
-    .then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Something went wrong: ${res.status}`);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-  }
-
-  //add like to the server
-  cardLiked(cardId) {
-    return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
-      method: "PUT",
-      headers: this._headers
-    })
-    .then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Something went wrong: ${res.status}`);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-  }
-
-  // show card icons according to the data from the server
-  setCardIcons() {
-    return fetch(`${this._baseUrl}/users/me`, {
-      headers: this._headers
-    })
-    .then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Something went wrong: ${res.status}`);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  changeLikeStatus(LikeButtonIsActive, cardId){
+    if(LikeButtonIsActive) {
+      //unlike heart button
+      return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+        method: "DELETE",
+        headers: this._headers
+      })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject(`Something went wrong: ${res.status}`);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    }
+    else {
+      //like heart button
+      return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+        method: "PUT",
+        headers: this._headers
+      })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject(`Something went wrong: ${res.status}`);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    }
   }
 }
 

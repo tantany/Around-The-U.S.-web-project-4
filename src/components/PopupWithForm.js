@@ -23,7 +23,7 @@ class PopupWithForm extends Popup {
     this._popupElement.addEventListener("submit", (evt) => {
       evt.preventDefault();
       this.renderLoading(true);
-      this._handleFormSubmit(this._getInputValues());
+      this._handleFormSubmit(this._getInputValues(), this._listItem, this._cardId);
       evt.stopPropagation();
     });
 
@@ -49,6 +49,11 @@ class PopupWithForm extends Popup {
     else {
       this._popupElement.querySelector('.popup__button').value = this._buttonValue;
     }
+  }
+
+  setSubmitAction(listItem, cardId) {
+    this._listItem = listItem;
+    this._cardId = cardId;
   }
 }
 
